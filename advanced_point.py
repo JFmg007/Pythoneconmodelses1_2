@@ -5,27 +5,27 @@ class AdvancedPoint(ColorPoint):
     def __init__(self, x, y, color):
         if color not in self.COLORS:
             raise TypeError(f"Invalid color, must be one of {self.COLORS}")
-        self.c_x = x
-        self.c_y = y
-        self.color = color
+        self._x = x
+        self._y = y
+        self._color = color
 
-        @property # method that takes no extra parameters; it just takes self, so I do not need to put the open and closed parenthesis.
-        def x(self):
-            return self._x # getter method
+    @property
+    def x(self):
+        return self._x # getter method
 
-        x.setter
-        def x(self, value):
-            self._x = value #"setter" method
+    @x.setter
+    def x(self, value):
+        self._x = value # "setter" method
 
-        @property
-        def y(self):
-            return self._y
+    @property
+    def y(self):
+        return self._y
 
-        @property
-        def color(self):
-            return self._color
+    @property
+    def color(self):
+        return self._color
 
-    @classmethod #applies to a class as whole; if you are not using anything about the instance but you are changing something about the class itself, then it is a class method
+    @classmethod
     def add_color(cls, color):
         """
         Adds a new valid color for our class
@@ -48,9 +48,9 @@ class AdvancedPoint(ColorPoint):
         return ((self.x - p.x) ** 2 + (self.y - p.y) ** 2) ** 0.5
 
 AdvancedPoint.add_color("rojo")
-p = AdvancedPoint(1,2, "rojo")
+p = AdvancedPoint(1, 2, "rojo")
 print(p.x)
-
+print(p)
 print(p.distance_orig())
 p2 = AdvancedPoint.from_tuple((3, 2))
 print(p2)
